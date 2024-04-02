@@ -22,7 +22,7 @@ namespace AnecdoteAboutStirlitzCreator
             {
                 Console.WriteLine("!");
             }
-
+            Console.WriteLine("Использовать АВТО-РЕЖИМ? (1 - \"Да\". Всё остальное - \"Нет\")");
 
             using (FileStream FileStream = new FileStream(path, FileMode.OpenOrCreate))
             {
@@ -79,8 +79,8 @@ namespace AnecdoteAboutStirlitzCreator
                     {
                         WriteInFile(FileStream, $"Никто не ответил, и Штирлиц сам открыл дверь. За дверью стоял мужик с запиской\".\r\n");
                     }
-                Console.ReadLine();
             }
+            Console.ReadLine();
         }
 
         public static void WriteInFile(FileStream FileStream, string Text)
