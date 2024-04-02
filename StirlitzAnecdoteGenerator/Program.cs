@@ -1,6 +1,7 @@
 ﻿using static System.Net.Mime.MediaTypeNames;
 using System.IO;
 using System.Text;
+using StirlitzAnecdoteGenerator;
 
 namespace AnecdoteAboutStirlitzCreator
 {
@@ -52,7 +53,7 @@ namespace AnecdoteAboutStirlitzCreator
                         $"– {Answer} - подумал {Someone} за дверью.\r\n" +
                         $"- Так кто же за дверью?! - вокликнул Штирлиц\r\n" +
                         $"- Давай расскажешь анекдот про Штирлица, и я скажу тебе, кто я.\r\n" +
-                        $"Делать нечего, и Штирлиц начал рассказывать анекдот:\r\n");
+                        $"Делать нечего, и Штирлиц начал рассказывать анекдот:\r\n");//':' или '-'?
 
 
                 }
@@ -71,6 +72,11 @@ namespace AnecdoteAboutStirlitzCreator
             byte[] buffer = Encoding.Default.GetBytes(Text);
             // запись массива байтов в файл
             FileStream.Write(buffer, 0, buffer.Length);
+        }
+
+
+        public static List<Guest>? GetGuests(int GeneralCost) {
+            return null;
         }
     }
 }
