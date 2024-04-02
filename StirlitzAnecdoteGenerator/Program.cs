@@ -33,7 +33,7 @@ namespace AnecdoteAboutStirlitzCreator
                     if (i == Max) stringnot1024 = string.Empty;//Если 1024 раза
 
                     string raz = "раза";
-                    if (i % 10 == 1 || i >= 10 && i <= 19) raz = "раз";
+                    if (i % 10 == 0 || i % 10 == 1 || i >= 10 && i <= 19) raz = "раз";
                     Console.WriteLine($"В дверь постучали {i} {raz}. Кто постучал? (Введите '`' для генерации случайного ответа)");
                     string Guess = ""; //Console.ReadLine()!;//!
                     if (Guess.Equals("`") || true)//!!!!!!!!!!
@@ -66,7 +66,7 @@ namespace AnecdoteAboutStirlitzCreator
                     WriteInFile(FileStream, $"{stringnot1024}В дверь постучали {i} раза.\r\n" +
                         $"– {Guess}, – подумал Штирлиц.\r\n" +
                         $"– {Answer} - подумал {Someone} за дверью.\r\n" +
-                        $"- Так кто же за дверью?! - вокликнул Штирлиц\r\n" +
+                        $"- Так кто же за дверью?! - вокликнул Штирлиц.\r\n" +
                         $"- Давай расскажешь анекдот про Штирлица, и я скажу тебе, кто я.\r\n" +
                         $"Делать нечего, и Штирлиц начал рассказывать анекдот:\r\n");//':' или '-'?
 
