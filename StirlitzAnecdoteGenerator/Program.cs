@@ -16,71 +16,73 @@ namespace AnecdoteAboutStirlitzCreator
 
 
             int Max = 0;
-
-            Console.WriteLine("Введите количество анекдотов:");
-            while (!int.TryParse(Console.ReadLine(), out Max))
+            do
             {
-                Console.WriteLine("!");
-            }
-            Console.WriteLine("Использовать АВТО-РЕЖИМ? (1 - \"Да\". Всё остальное - \"Нет\")");
-
-            using (FileStream FileStream = new FileStream(path, FileMode.OpenOrCreate))
-            {
-                bool isPhase1Complete = true;
-                for (int i = Max; i > 0; i--)
+                Console.WriteLine("Введите количество анекдотов:");
+                while (!int.TryParse(Console.ReadLine(), out Max))
                 {
-                    string stringnot1024 = "\"";
-                    if (i == Max) stringnot1024 = string.Empty;//Если 1024 раза
-
-                    string raz = "раза";
-                    if (i % 10 == 0 || i % 10 == 1 || i >= 10 && i <= 19) raz = "раз";
-                    Console.WriteLine($"В дверь постучали {i} {raz}. Кто постучал? (Введите '`' для генерации случайного ответа)");
-                    string Guess = ""; //Console.ReadLine()!;//!
-                    if (Guess.Equals("`") || true)//!!!!!!!!!!
-                    {
-                        Guess = GetGuess(GetGuests(i)!);
-                        Console.WriteLine($"Сгенерировано: \"{Guess}\"");
-                    }
-                    if (Guess.Equals("SAVE"))
-                    {
-                        Console.WriteLine($"СОХРАНЕНИЕ АНЕКДОТА");
-                        isPhase1Complete = false;
-                        break;
-                    }
-
-
-                    string Answer = "Не догадался";
-                    string Someone = "некто";
-                    switch (rnd.NextInt64(0, 1))
-                    {
-                        case 0: Someone = "Не догадался"; break;
-                    }
-                    switch (rnd.NextInt64(0, 2))
-                    {
-                        case 0: Someone = "некто"; break;
-                        case 1: Someone = "кто-то"; break;
-                    }
-
-
-
-                    WriteInFile(FileStream, $"{stringnot1024}В дверь постучали {i} раза.\r\n" +
-                        $"– {Guess}, – подумал Штирлиц.\r\n" +
-                        $"– {Answer} - подумал {Someone} за дверью.\r\n" +
-                        $"- Так кто же за дверью?! - вокликнул Штирлиц.\r\n" +
-                        $"- Давай расскажешь анекдот про Штирлица, и я скажу тебе, кто я.\r\n" +
-                        $"Делать нечего, и Штирлиц начал рассказывать анекдот:\r\n");//':' или '-'?
-
-
+                    Console.WriteLine("!");
                 }
-                WriteInFile(FileStream, $"В дверь постучали 0 раза.\r\n" +
-                    $"Никто не ответил, и Штирлиц сам открыл дверь. За дверью стоял мужик с запиской\".\r\n");
-                if (isPhase1Complete)
+                Console.WriteLine("Использовать АВТО-РЕЖИМ? (1 - \"Да\". Всё остальное - \"Нет\")");
+
+                using (FileStream FileStream = new FileStream(path, FileMode.OpenOrCreate))
+                {
+                    bool isPhase1Complete = true;
                     for (int i = Max; i > 0; i--)
                     {
-                        WriteInFile(FileStream, $"Никто не ответил, и Штирлиц сам открыл дверь. За дверью стоял мужик с запиской\".\r\n");
+                        string stringnot1024 = "\"";
+                        if (i == Max) stringnot1024 = string.Empty;//Если 1024 раза
+
+                        string raz = "раза";
+                        if (i % 10 == 0 || i % 10 == 1 || i >= 10 && i <= 19) raz = "раз";
+                        Console.WriteLine($"В дверь постучали {i} {raz}. Кто постучал? (Введите '`' для генерации случайного ответа)");
+                        string Guess = ""; //Console.ReadLine()!;//!
+                        if (Guess.Equals("`") || true)//!!!!!!!!!!
+                        {
+                            Guess = GetGuess(GetGuests(i)!);
+                            Console.WriteLine($"Сгенерировано: \"{Guess}\"");
+                        }
+                        if (Guess.Equals("SAVE"))
+                        {
+                            Console.WriteLine($"СОХРАНЕНИЕ АНЕКДОТА");
+                            isPhase1Complete = false;
+                            break;
+                        }
+
+
+                        string Answer = "Не догадался";
+                        string Someone = "некто";
+                        switch (rnd.NextInt64(0, 1))
+                        {
+                            case 0: Someone = "Не догадался"; break;
+                        }
+                        switch (rnd.NextInt64(0, 2))
+                        {
+                            case 0: Someone = "некто"; break;
+                            case 1: Someone = "кто-то"; break;
+                        }
+
+
+
+                        WriteInFile(FileStream, $"{stringnot1024}В дверь постучали {i} раза.\r\n" +
+                            $"– {Guess}, – подумал Штирлиц.\r\n" +
+                            $"– {Answer} - подумал {Someone} за дверью.\r\n" +
+                            $"- Так кто же за дверью?! - вокликнул Штирлиц.\r\n" +
+                            $"- Давай расскажешь анекдот про Штирлица, и я скажу тебе, кто я.\r\n" +
+                            $"Делать нечего, и Штирлиц начал рассказывать анекдот:\r\n");//':' или '-'?
+
+
                     }
-            }
-            Console.ReadLine();
+                    WriteInFile(FileStream, $"В дверь постучали 0 раза.\r\n" +
+                        $"Никто не ответил, и Штирлиц сам открыл дверь. За дверью стоял мужик с запиской\".\r\n");
+                    if (isPhase1Complete)
+                        for (int i = Max; i > 0; i--)
+                        {
+                            WriteInFile(FileStream, $"Никто не ответил, и Штирлиц сам открыл дверь. За дверью стоял мужик с запиской\".\r\n");
+                        }
+                }
+                Console.WriteLine("Перезаписать анекдот? (1 - \"Да\". Всё остальное - \"Нет\")");
+            } while (Console.ReadLine().Equals("1"));
         }
 
         public static void WriteInFile(FileStream FileStream, string Text)
@@ -115,24 +117,38 @@ namespace AnecdoteAboutStirlitzCreator
 
             int RemainCost = GeneralCost;
 
-            switch (rnd.Next(0, 2))
+            switch (rnd.Next(0, 3))
             {
                 case 0://Max
 
-                    log("GetGuests(int GeneralCost): MAX");
-                    for (int i = 0; i < CurrentList.Count; i++)
-                    {
-                        if (CurrentList[i].isDividable)
-                            CurrentList[i].Number = RemainCost / CurrentList[i].Cost;
-                        else
-                            CurrentList[i].Number = (int)Math.Round((GeneralCost / CurrentList[i].Cost) / 2, 3, MidpointRounding.ToNegativeInfinity);
-                        RemainCost -= (int)Math.Round(CurrentList[i].Number * CurrentList[i].Cost, 3, MidpointRounding.AwayFromZero);
-                    }
+                    //log("GetGuests(int GeneralCost): MAX");
+                    //for (int i = 0; i < CurrentList.Count; i++)
+                    //{
+                    //    if (CurrentList[i].isDividable)
+                    //        CurrentList[i].Number = RemainCost / CurrentList[i].Cost;
+                    //    else
+                    //        CurrentList[i].Number = (int)Math.Round((GeneralCost / CurrentList[i].Cost) / 2, 3, MidpointRounding.ToNegativeInfinity);
+                    //    RemainCost -= (int)Math.Round(CurrentList[i].Number * CurrentList[i].Cost, 3, MidpointRounding.AwayFromZero);
+                    //}
 
-                    break;
+                    //break;
                 case 1://NotMax
-                    log("GetGuests(int GeneralCost): NOTMAX");
-                    CurrentList[0].Number = (int)Math.Round((GeneralCost / CurrentList[0].Cost) / 2, MidpointRounding.ToNegativeInfinity);
+                    //log("GetGuests(int GeneralCost): NOTMAX");
+                    //CurrentList[0].Number = (int)Math.Round((GeneralCost / CurrentList[0].Cost) / 2, MidpointRounding.ToNegativeInfinity);
+                    //RemainCost -= (int)Math.Round(CurrentList[0].Number * CurrentList[0].Cost, MidpointRounding.AwayFromZero);
+
+                    //for (int i = 1; i < CurrentList.Count; i++)
+                    //{
+                    //    if (CurrentList[i].isDividable)
+                    //        CurrentList[i].Number = RemainCost / CurrentList[i].Cost;
+                    //    else
+                    //        CurrentList[i].Number = (int)Math.Round((GeneralCost / CurrentList[i].Cost) / 2, MidpointRounding.ToNegativeInfinity);
+                    //    RemainCost -= (int)Math.Round(CurrentList[i].Number * CurrentList[i].Cost, MidpointRounding.AwayFromZero);
+                    //}
+                    //break;
+                case 2://NotMax
+                    log("GetGuests(int GeneralCost): NOTMAX(POSITIVE)");
+                    CurrentList[0].Number = (int)Math.Round((GeneralCost / CurrentList[0].Cost) / 2, MidpointRounding.AwayFromZero);
                     RemainCost -= (int)Math.Round(CurrentList[0].Number * CurrentList[0].Cost, MidpointRounding.AwayFromZero);
 
                     for (int i = 1; i < CurrentList.Count; i++)
@@ -140,7 +156,7 @@ namespace AnecdoteAboutStirlitzCreator
                         if (CurrentList[i].isDividable)
                             CurrentList[i].Number = RemainCost / CurrentList[i].Cost;
                         else
-                            CurrentList[i].Number = (int)Math.Round((GeneralCost / CurrentList[i].Cost) / 2, MidpointRounding.ToNegativeInfinity);
+                            CurrentList[i].Number = (int)Math.Round((GeneralCost / CurrentList[i].Cost) / 2, MidpointRounding.AwayFromZero);
                         RemainCost -= (int)Math.Round(CurrentList[i].Number * CurrentList[i].Cost, MidpointRounding.AwayFromZero);
                     }
                     break;
@@ -157,8 +173,8 @@ namespace AnecdoteAboutStirlitzCreator
                 if (Guests[i].Number <= 0) continue;
                 //Выбираем нужное склонение
                 string GuestName = Guests[i].Name2;
-                if (Guests[i].Number >= 10 && Guests[i].Number <= 20 || Guests[i].Number % 10 >= 5 || Guests[i].Number % 10 >= 0) GuestName = Guests[i].Name5;
-                if (Guests[i].Number < 10 && Guests[i].Number > 20 && Guests[i].Number % 10 < 5) GuestName = Guests[i].Name;
+                if (Guests[i].Number >= 10 && Guests[i].Number <= 20 || Guests[i].Number % 10 >= 5 || Guests[i].Number % 10 == 0) GuestName = Guests[i].Name5;
+                if ((Guests[i].Number < 10 || Guests[i].Number > 20) && Guests[i].Number % 10 < 5) GuestName = Guests[i].Name;
                 if (i != 0 && !Guests[i].isProperName) GuestName = GuestName.ToLower();
                 GuestsString.Append($"{Guests[i].Number} {GuestName}, ");
             }
