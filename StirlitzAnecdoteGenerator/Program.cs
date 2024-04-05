@@ -35,7 +35,7 @@ namespace AnecdoteAboutStirlitzCreator
                         if (i == Max) stringnot1024 = string.Empty;//Если 1024 раза
 
                         string raz = "раза";
-                        if (i % 10 == 0 || i % 10 == 1 || i >= 10 && i <= 19) raz = "раз";
+                        if (i % 10 == 0 || i % 10 == 1 || i % 10 >=5 || i >= 10 && i <= 19) raz = "раз";
                         Console.WriteLine($"В дверь постучали {i} {raz}. Кто постучал? (Введите '`' для генерации случайного ответа)");
                         string Guess = "";
                         if (!isAuto) 
@@ -179,9 +179,9 @@ namespace AnecdoteAboutStirlitzCreator
             {
                 if (Guests[i].Number <= 0) continue;
                 //Выбираем нужное склонение
-                string GuestName = Guests[i].Name2;
+                string GuestName = Guests[i].Name;
                 if (Guests[i].Number >= 10 && Guests[i].Number <= 20 || Guests[i].Number % 10 >= 5 || Guests[i].Number % 10 == 0) GuestName = Guests[i].Name5;
-                if ((Guests[i].Number < 10 || Guests[i].Number > 20) && Guests[i].Number % 10 < 5) GuestName = Guests[i].Name;
+                if ((Guests[i].Number < 10 || Guests[i].Number > 20) && Guests[i].Number % 10 < 5 && Guests[i].Number % 10 > 1) GuestName = Guests[i].Name2;
                 if (i != 0 && !Guests[i].isProperName) GuestName = GuestName.ToLower();
                 GuestsString.Append($"{Guests[i].Number} {GuestName}, ");
             }
