@@ -10,11 +10,11 @@ namespace AnecdoteAboutStirlitzCreator
         static Random rnd = new Random();
         static void Main(string[] args)
         {
-            string path = @"D:\Test\Test.txt";
             //FileInfo file = new FileInfo(path);
             //file.Write
 
-
+            Console.WriteLine("Введите путь к файлу:");
+            string path = Console.ReadLine();
             int Max = 0;
             do
             {
@@ -24,6 +24,7 @@ namespace AnecdoteAboutStirlitzCreator
                     Console.WriteLine("!");
                 }
                 Console.WriteLine("Использовать АВТО-РЕЖИМ? (1 - \"Да\". Всё остальное - \"Нет\")");
+                bool isAuto = Console.ReadLine() == "1";
 
                 using (FileStream FileStream = new FileStream(path, FileMode.OpenOrCreate))
                 {
@@ -36,12 +37,18 @@ namespace AnecdoteAboutStirlitzCreator
                         string raz = "раза";
                         if (i % 10 == 0 || i % 10 == 1 || i >= 10 && i <= 19) raz = "раз";
                         Console.WriteLine($"В дверь постучали {i} {raz}. Кто постучал? (Введите '`' для генерации случайного ответа)");
-                        string Guess = ""; //Console.ReadLine()!;//!
-                        if (Guess.Equals("`") || true)//!!!!!!!!!!
+                        string Guess = "";
+                        if (!isAuto) 
+                        {
+                            Guess = Console.ReadLine()!;
+                        }
+                        //if(!isAuto) 
+                        if (Guess.Equals("`") || isAuto)//!!!!!!!!!!
                         {
                             Guess = GetGuess(GetGuests(i)!);
                             Console.WriteLine($"Сгенерировано: \"{Guess}\"");
                         }
+
                         if (Guess.Equals("SAVE"))
                         {
                             Console.WriteLine($"СОХРАНЕНИЕ АНЕКДОТА");
