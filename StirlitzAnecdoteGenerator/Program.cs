@@ -12,7 +12,7 @@ namespace AnecdoteAboutStirlitzCreator
         {
             //FileInfo file = new FileInfo(path);
             //file.Write
-
+            Console.ForegroundColor = ConsoleColor.Green; 
             Console.WriteLine("Введите путь к файлу:");
             string path = Console.ReadLine();
             int Max = 0;
